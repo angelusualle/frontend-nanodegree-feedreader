@@ -90,25 +90,25 @@ $(
         });
       });
       it('loads atleast one single entry in feed container', () => {
-        expect($('.parent .child').length).toBeGreaterThan(0);
+        expect($('.feed .entry').length).toBeGreaterThan(0);
       });
     });
     describe('New Feed Selection', () => {
       beforeEach(done => {
         loadFeed(1, () => { 
-          window.oldData = document.querySelector('.entry-link').innerHTML;
-          done();
+          window.firstFeed = document.querySelector('.entry-link').innerHTML;
+          loadFeed(2, () => {
+            window.secondFeed = document.querySelector('.entry-link').innerHTML;
+            done();
+          });
         });
-        loadFeed(0, () => {
-          done();
-        });
+
       });
       /* Ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        */
       it('changes content when new feed selected', () => {
-        expect(window.oldData !== document.querySelector('.entry-link').innerHTML).toBe(true);
-        window.oldData = null;
+        expect(window.firstFeed !== window.secondFeed).toBe(true);
       });
     });
   })()
