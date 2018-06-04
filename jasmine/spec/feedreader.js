@@ -90,7 +90,7 @@ $(
         });
       });
       it('loads atleast one single entry in feed container', () => {
-        expect(document.querySelector('.entry-link')).not.toBeNull();
+        expect($('.parent .child').length).toBeGreaterThan(0);
       });
     });
     describe('New Feed Selection', () => {
